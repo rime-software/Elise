@@ -1,2 +1,3 @@
 
-module.exports = {}
+module.exports = 
+  Index: require './index/index.coffee'

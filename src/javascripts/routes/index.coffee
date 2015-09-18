@@ -1,6 +1,9 @@
 
 
   IndexController = new (Elise.get('Controllers/index'))
-
-  Router.route '', 'default', IndexController['index']
-  Router.route 'home', 'home', IndexController['index']
+  
+  Router.on 'route:default', () ->
+    IndexController.index()
+  
+  Router.on 'route:testRoute', (id) ->
+    IndexController.test(id)

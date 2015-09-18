@@ -1,7 +1,7 @@
 
 $(document).ready ->
   Elise = 
-    Models: true
+    Models: require './models/models.coffee'
     Views: require './views/views.coffee'
     Collections: true
     Controllers: require './controllers/controllers.coffee'
@@ -17,7 +17,7 @@ $(document).ready ->
   Elise.get_template = (path, format) ->
     if undefined == format
       format = '.html.js'
-    $.get '/js/templates/' + path + format, ((data) ->
+    $.get '/javascripts/templates/' + path + format, ((data) ->
       data
     ), 'html'
        

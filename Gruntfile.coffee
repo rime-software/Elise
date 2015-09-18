@@ -47,11 +47,11 @@ module.exports = (grunt) ->
     
     haml:
       index:
-        files: 'public_html/index.html': 'src/templates/index.haml'
+        files: 'public_html/index.html': 'src/views/layouts/index.haml'
       templates:
-        files: grunt.file.expandMapping(['src/templates/partials/**/*.haml'], 'public_html/js/templates/', {
+        files: grunt.file.expandMapping(['src/views/**/*.haml'], 'public_html/javascripts/templates/', {
           rename: (base, path) -> 
-            path = path.replace('src\/templates\/Partials\/','')
+            path = path.replace('src\/views\/','')
             return base + path.replace(/\.haml$/, '.html.js')
         })
     

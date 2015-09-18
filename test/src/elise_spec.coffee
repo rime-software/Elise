@@ -20,9 +20,6 @@ describe 'Elise', ->
 
       it 'Should exist', ->
         expect(Elise.get).to.be.a('function')
-    
-      it 'Should return a boolean when property is found', ->
-        expect(Elise.get('Models')).to.be(true)
       
       it 'Should return undefined when invalid property is passed', ->
         expect(Elise.get('Undefined')).to.be(undefined)
