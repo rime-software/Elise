@@ -9,7 +9,8 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-connect'
   grunt.loadNpmTasks('grunt-contrib-copy')
   grunt.loadNpmTasks('grunt-contrib-sass')
-  
+  grunt.loadNpmTasks('grunt-wrap')
+
   grunt.initConfig
     pkg: grunt.file.readJSON('package.json')
 
@@ -49,17 +50,32 @@ module.exports = (grunt) ->
       index:
         files: 'public_html/index.html': 'src/views/layouts/index.haml'
       templates:
-        files: grunt.file.expandMapping(['src/views/**/*.haml'], 'public_html/javascripts/templates/', {
+        files: grunt.file.expandMapping(['src/views/**/*.haml'], 'src/javascripts/templates/', {
           rename: (base, path) -> 
             path = path.replace('src\/views\/','')
             return base + path.replace(/\.haml$/, '.html.js')
-        })
+        })  
     
     sass:
       dist:
         files: {
           'public_html/stylesheets/app.css': 'src/stylesheets/app.sass'
         }
+    
+    wrap:
+      templates:
+        src: ['src/javascripts/templates/**/*.js']
+        dest: ''
+        options:
+          wrapper: ['module.exports = \'','\'']
+    
+    uglify:
+      templates:
+        files: [{
+          expand: true
+          src: 'src/javascripts/templates/**/*.js'
+          dest: ''
+        }]
     
     concat:
       expect:
@@ -113,14 +129,16 @@ module.exports = (grunt) ->
         ]
   
   grunt.registerTask('watchApp', ['watch:rime', 'watch:tests'])
-  grunt.registerTask('test', ['connect','jasmine'])
+  grunt.registerTask('test', ['connect','deploy','jasmine'])
   grunt.registerTask('compile', [
+    'haml:templates',
+    'wrap:templates',
+    'uglify:templates',
     'browserify', 
     'browserify:jasmineHelpers', 
     'coffee:compileTests', 
     'concat:libraries',
     'coffee:compileRoutes',
-    'haml:templates',
     'sass'])
   grunt.registerTask('deploy', ['compile','haml:index'])
   

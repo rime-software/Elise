@@ -1,11 +1,13 @@
+
 module.exports = class IndexView extends Backbone.View
 
   el: 'main'
+  template: require '../../templates/index/index.html.js'
   
   initialize: =>
     @render()
   
   render: =>
     self = @
-    Elise.get_template('index/index').done (data) ->
-      $(self.el).append(_.template(data)({}))
+    $(self.el).append(_.template(self.template)({}))
+    
