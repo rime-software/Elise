@@ -37,8 +37,14 @@ describe 'Elise', ->
         
     describe 'unbind_views', ->
       
-      it 'Should remove all views', ->
+      beforeEach ->
         Elise.bind('Views/Header')
-        Elise.bind('Views/Footer')
+        Elise.bind('Views/Footer')        
+      
+      it 'Should remove all view instances', ->
         Elise.unbind_views()
         expect(Elise.Dom['Views']['Header']).to.be(undefined)
+        
+      it 'Should clear the DOM', ->
+        Elise.unbind_views()
+        expect($('header').html()).to.be.empty()
