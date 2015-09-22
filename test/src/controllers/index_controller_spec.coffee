@@ -11,14 +11,8 @@ describe 'IndexController', ->
       @IndexController = new (Elise.get('Controllers/index'))
       
     afterEach ->
-      $('header').html('')
-      $('footer').html('')
-      $('main').html('')
-      @IndexController.header_view.undelegateEvents()
-      @IndexController.footer_view.undelegateEvents()
-      @IndexController = null
-
-    
+      Elise.unbind_views()
+      
     describe 'Index', ->
     
       it 'Should have an index action', ->

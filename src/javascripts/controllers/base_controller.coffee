@@ -10,19 +10,19 @@ class BaseController
     @get_footer() if render_footer
      
   get_header: ->
-    @header_view = (new (Elise.get('Views/Header')))
+    @header_view = Elise.bind('Views/Header')
   
   get_footer: ->
-    @footer_view = (new (Elise.get('Views/Footer')))
+    @footer_view = Elise.bind('Views/Footer')
       
   render: (view = null, attrs = undefined)->
     view_ptr = null
     if view == null
-      view_ptr = Elise.get(@default_view)
+      view_ptr = Elise.bind(@default_view)
     else
-      view_ptr = Elise.get(view)
+      view_ptr = Elise.bind(view)
     
-    (new view_ptr(attrs))
+    view_ptr
     
     
 module.exports = BaseController
