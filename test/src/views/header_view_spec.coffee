@@ -11,3 +11,4 @@ describe 'Header View', ->
       it 'Should expand on search icon click', ->
         @view.$('span.searchbox-icon').click()
         expect($('.searchbox').hasClass('searchbox-open')).to.be(true)
+        

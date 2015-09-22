@@ -27,3 +27,18 @@ describe 'Elise', ->
     describe 'get template', ->
       it 'Should exist', ->
         expect(Elise.get_template).to.be.a('function')
+        
+    describe 'bind', ->
+      
+      it 'Should bind a view to Dom#Views', ->
+        Elise.bind('Views/Header')
+        expect(Elise.Dom['Views']['Header']).to.be.an('object')
+        Elise.unbind_views()
+        
+    describe 'unbind_views', ->
+      
+      it 'Should remove all views', ->
+        Elise.bind('Views/Header')
+        Elise.bind('Views/Footer')
+        Elise.unbind_views()
+        expect(Elise.Dom['Views']['Header']).to.be(undefined)
