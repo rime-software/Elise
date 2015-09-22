@@ -1,12 +1,23 @@
 describe 'IndexController', ->
   
   it 'Should be defined', ->
-    expect(Elise.get('Controllers/index')).to.be.a('function')
+    obj = Elise.get('Controllers/index')
+    expect(obj).to.be.a('function')
+    obj = null
     
   describe 'Actions', ->
   
     beforeEach ->
       @IndexController = new (Elise.get('Controllers/index'))
+      
+    afterEach ->
+      $('header').html('')
+      $('footer').html('')
+      $('main').html('')
+      @IndexController.header_view.undelegateEvents()
+      @IndexController.footer_view.undelegateEvents()
+      @IndexController = null
+
     
     describe 'Index', ->
     

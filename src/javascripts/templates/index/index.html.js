@@ -1,0 +1,1 @@
+module.exports="\n<h1>Hello World</h1>\n";

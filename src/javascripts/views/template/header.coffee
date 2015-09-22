@@ -1,6 +1,7 @@
 module.exports = class HeaderView extends Backbone.View
 
   el: 'header'
+  template: require '../../templates/partials/header.html.js'
   
   initialize: =>
     @render()
@@ -9,11 +10,8 @@ module.exports = class HeaderView extends Backbone.View
     'click span.searchbox-icon': 'toggle_search_bar'
   
   toggle_search_bar: ()->
-    console.log("Search Toggled")
     $('.searchbox').toggleClass('searchbox-open');
   
   render: =>
     self = @
-    Elise.get_template('partials/header').done (data) ->
-      $(self.el).html(_.template(data)({}))
-    self
+    $(self.el).html(_.template(self.template)({}))

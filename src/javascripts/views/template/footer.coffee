@@ -1,11 +1,11 @@
 module.exports = class FooterView extends Backbone.View
 
   el: 'body > footer'
+  template: require '../../templates/partials/footer.html.js'
   
   initialize: =>
     @render()
   
   render: =>
     self = @
-    Elise.get_template('partials/footer').done (data) ->
-      $(self.el).append(_.template(data)({}))
+    $(self.el).append(_.template(self.template)({}))
