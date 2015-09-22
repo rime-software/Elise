@@ -1,1 +1,1 @@
-module.exports='\n<nav><ul><li>Home</li><li>Blog</li><li>Tutorials</li></ul></nav><section class="searchbox"><input type="search" placeholder="Search" class="searchbox-input" /><span class="fa fa-search fa-lg searchbox-icon"></span></section>\n';
+module.exports='\n<span class="nav-trigger"></span><nav><ul><li>Home</li><li>Blog</li><li>Tutorials</li></ul></nav><section class="searchbox"><input type="search" placeholder="Search" class="searchbox-input" /><span class="fa fa-search fa-lg searchbox-icon"></span></section>\n';
